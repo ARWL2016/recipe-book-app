@@ -1,23 +1,52 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux'; 
 import { bindActionCreators } from 'redux'; 
-import { fetchRecipes } from '../actions/index'; 
+import { addRecipe } from '../actions/index'; 
 
 class IndexView extends Component {
-  componentWillMount() {
-    this.props.fetchRecipes(); 
+  constructor(props) {
+    super(props); 
+
+    this.handleClick = this.handleClick.bind(this); 
   }
+
+  handleClick() {
+    const newDish = {title: "meat and two veg"}; 
+    this.props.addRecipe(newDish); 
+  }
+   
+  renderRecipeList() {
+    return this.props.recipes.map((recipe) => {
+      return (
+        <li key={recipe.title}>{recipe.title}</li> 
+      );
+    });
+  }
+  
   render() {
     return (
       <div>
-        <h1>Index View</h1> 
+        <ul> 
+          {this.renderRecipeList()}
+        </ul>
+        <button onClick={this.handleClick}>Add Recipe</button>
+        {/*<p>{this.props.newRecipe.title}</p>*/}
+          
       </div> 
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRecipes }, dispatch)
+function mapStateToProps(state) {
+  return { 
+    recipes: state.recipes, 
+    newRecipe: state.newRecipe
+
+  }; 
 }
 
-export default connect(null, mapDispatchToProps)(IndexView); 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addRecipe }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexView); 
