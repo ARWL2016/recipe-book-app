@@ -1,52 +1,25 @@
 import React, { Component } from 'react'; 
-import { connect } from 'react-redux'; 
-import { bindActionCreators } from 'redux'; 
-import { addRecipe } from '../actions/index'; 
+import starterRecipes from '../default-recipes.js'; 
+import { Link } from 'react-router'; 
 
-class IndexView extends Component {
-  constructor(props) {
+export default class IndexView extends Component {
+  constructor (props) {
     super(props); 
-
-    this.handleClick = this.handleClick.bind(this); 
+    localStorage.setItem("recipeList", JSON.stringify(starterRecipes));
   }
-
-  handleClick() {
-    const newDish = {title: "meat and two veg"}; 
-    this.props.addRecipe(newDish); 
-  }
-   
   renderRecipeList() {
-    return this.props.recipes.map((recipe) => {
-      return (
-        <li key={recipe.title}>{recipe.title}</li> 
-      );
-    });
-  }
-  
+    const recipes = JSON.parse(localStorage.getItem("recipeList")); 
+    return recipes.map((recipe) => {
+      return <h4 key={recipe.title}><Link to="">{recipe.title}</Link></h4>
+    }); 
+  }; 
   render() {
     return (
       <div>
-        <ul> 
-          {this.renderRecipeList()}
-        </ul>
-        <button onClick={this.handleClick}>Add Recipe</button>
-        {/*<p>{this.props.newRecipe.title}</p>*/}
-          
+        {this.renderRecipeList()}
       </div> 
+      
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { 
-    recipes: state.recipes, 
-    newRecipe: state.newRecipe
-
-  }; 
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addRecipe }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(IndexView); 
