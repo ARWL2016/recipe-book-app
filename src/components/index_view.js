@@ -5,11 +5,16 @@ import { Link } from 'react-router';
 export default class IndexView extends Component {
   constructor (props) {
     super(props); 
+      console.log('constructor call');
       const listBeforeMount = JSON.parse(localStorage.getItem("recipeList")); 
       console.log(listBeforeMount); 
-      // localStorage.setItem("recipeList", JSON.stringify(starterRecipes));
-      console.log('constructor call');
-     
+      if (listBeforeMount === null) {
+        console.log('no data, adding default data');
+        localStorage.setItem("recipeList", JSON.stringify(starterRecipes));
+      } else {
+        console.log('data exists'); 
+        console.log(listBeforeMount); 
+      }
   }
   componentWillMount() {
     console.log('will mount'); 
