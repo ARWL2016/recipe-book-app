@@ -27,10 +27,11 @@ export default class RecipeForm extends Component {
               onChange={this.props.onChange} 
               value={this.props.recipe.ingredients} />
           </div> 
-          <input type="submit" value="Save" className="btn btn-primary" onClick={this.props.onSave} /> 
+          <button type="submit" className="btn btn-primary" onClick={this.props.onSave}>Save</button> 
+          <Link to="/"><button className="btn btn-warning">Cancel</button></Link>
         </form> 
         
-        <Link to="/"><button className="btn btn-warning">Cancel</button></Link>
+        
 
       </div> 
     ) 

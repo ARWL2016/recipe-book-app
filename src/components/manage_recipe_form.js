@@ -1,17 +1,15 @@
-import React, { Component } from 'react'; 
+import React, { Component, PropTypes } from 'react'; 
 import _ from 'underscore'; 
 import RecipeForm from './recipe_form'; 
 
 export default class ManageRecipeForm extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
   constructor(props) {
     super(props); 
-    this.state = {
-      recipe: {
-        title: '', 
-        ingredients: '', 
-        _id: ''
-      }
-    }; 
+    this.state = { recipe: { title: '', ingredients: '', _id: '' } }; 
+
     this.setRecipeState = this.setRecipeState.bind(this); 
     this.saveRecipe = this.saveRecipe.bind(this); 
   }
@@ -31,6 +29,7 @@ export default class ManageRecipeForm extends Component {
     localStorage.setItem("recipeList", JSON.stringify(recipeList)); 
 
     console.log(JSON.parse(localStorage.getItem("recipeList")));
+    this.context.router.push('/'); 
   }
   
   render() {

@@ -11,6 +11,7 @@ export default (
     <IndexRoute component={IndexView} /> 
     <Route path='recipe/:id' component={RecipeView} />
     <Route path='add' component={ManageRecipeForm} />
+    <Route path='edit/:id' component={ManageRecipeForm} />
   </Route> 
 
 ); 
