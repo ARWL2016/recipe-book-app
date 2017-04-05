@@ -31,11 +31,8 @@ export default class RecipeForm extends Component {
           <button type="submit" className="btn btn-primary" onClick={this.props.onSave}>Save</button> 
           <Link to="/"><button className="btn btn-warning">Cancel</button></Link>
         </form> 
-        
-        
-
       </div> 
-    ) 
+    );
   }
 }
 

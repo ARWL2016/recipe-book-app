@@ -1,15 +1,13 @@
 {
-  "name": "redux-simple-starter",
+  "name": "react-recipe-book-app",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Basic CRUD application using browser local storage",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "https://github.com/ARWL2016/recipe-book-app",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
-  "author": "",
+  "author": "Alistair Willis",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.2.1",

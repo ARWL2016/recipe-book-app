@@ -14,11 +14,13 @@ export default class ManageRecipeForm extends Component {
     if (this.props.params.id) {
       const recipes = JSON.parse(localStorage.getItem("recipeList"));  
       const selection = (recipes.filter((recipe) => recipe._id === this.props.params.id))[0]; 
-      this.state = { recipe: { 
-        title: selection.title, 
-        ingredients: selection.ingredients.join(), 
-        _id: selection._id
-      }};
+      this.state = { 
+        recipe: { 
+          title: selection.title, 
+          ingredients: selection.ingredients.join(), 
+          _id: selection._id
+        }
+      };
     } 
 
     this.setRecipeState = this.setRecipeState.bind(this); 
