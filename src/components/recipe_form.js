@@ -17,12 +17,24 @@ export default class RecipeForm extends Component {
         <h2>Recipe Form</h2> 
         <form> 
           <div className="form-group"> 
-            <label htmlFor="recipeName">Recipe name</label> 
-            <input type="text" name="recipeName" placeholder="enter a name for your recipe" className="form-control" /> 
+            <label htmlFor="name">Recipe name</label> 
+            <input 
+              type="text" 
+              name="name" 
+              placeholder="enter a name for your recipe" 
+              className="form-control"
+              onChange={this.props.onChange} 
+              value={this.props.recipe.name}/> 
           </div> 
           <div className="form-group"> 
-            <label htmlFor="recipeIngredients">Ingredients</label> 
-            <textarea name="recipeIngredients" placeholder="enter your ingredients, divided by commas" rows="5" className="form-control" />
+            <label htmlFor="ingredients">Ingredients</label> 
+            <textarea 
+              name="ingredients" 
+              placeholder="enter your ingredients, divided by commas" 
+              rows="5" 
+              className="form-control" 
+              onChange={this.props.onChange} 
+              value={this.props.recipe.ingredients} />
           </div> 
 
         </form> 
@@ -32,4 +44,10 @@ export default class RecipeForm extends Component {
       </div> 
     ) 
   }
+}
+
+RecipeForm.propTypes = {
+  // recipe: React.PropTypes.object.isRequired,
+  onChange: React.PropTypes.func.isRequired
+  // onSave: React.PropTypes.func.isRequired, 
 }
