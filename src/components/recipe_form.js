@@ -1,12 +1,3 @@
-// saveRecipe() {
-
-//     const recipeList = JSON.parse(localStorage.getItem("recipeList")) || []; 
-//     recipeList.push(recipe); 
-//     localStorage.setItem("recipeList", JSON.stringify(recipeList)); 
-
-//     console.log(JSON.parse(localStorage.getItem("recipeList")));
-//   }
-
 import React, { Component } from 'react'; 
 import { Link } from 'react-router'; 
 
@@ -17,10 +8,10 @@ export default class RecipeForm extends Component {
         <h2>Recipe Form</h2> 
         <form> 
           <div className="form-group"> 
-            <label htmlFor="name">Recipe name</label> 
+            <label htmlFor="title">Recipe name</label> 
             <input 
               type="text" 
-              name="name" 
+              name="title" 
               placeholder="enter a name for your recipe" 
               className="form-control"
               onChange={this.props.onChange} 
@@ -36,9 +27,9 @@ export default class RecipeForm extends Component {
               onChange={this.props.onChange} 
               value={this.props.recipe.ingredients} />
           </div> 
-
+          <input type="submit" value="Save" className="btn btn-primary" onClick={this.props.onSave} /> 
         </form> 
-        <Link to="/"><button className="btn btn-primary">Add Recipe</button></Link>
+        
         <Link to="/"><button className="btn btn-warning">Cancel</button></Link>
 
       </div> 
@@ -47,7 +38,7 @@ export default class RecipeForm extends Component {
 }
 
 RecipeForm.propTypes = {
-  // recipe: React.PropTypes.object.isRequired,
-  onChange: React.PropTypes.func.isRequired
-  // onSave: React.PropTypes.func.isRequired, 
+  recipe: React.PropTypes.object.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  onSave: React.PropTypes.func.isRequired
 }

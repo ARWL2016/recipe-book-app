@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-
+import _ from 'underscore'; 
 import RecipeForm from './recipe_form'; 
 
 export default class ManageRecipeForm extends Component {
@@ -7,22 +7,38 @@ export default class ManageRecipeForm extends Component {
     super(props); 
     this.state = {
       recipe: {
-        name: '', 
-        ingredients: ''
+        title: '', 
+        ingredients: '', 
+        _id: ''
       }
     }; 
     this.setRecipeState = this.setRecipeState.bind(this); 
+    this.saveRecipe = this.saveRecipe.bind(this); 
   }
-  setRecipeState(e) {
-    console.log(e.target.value); 
-    console.log(e.target.name); 
+  setRecipeState(e) { 
     this.state.recipe[e.target.name] = e.target.value; 
     this.setState({recipe: this.state.recipe}); 
+  }
+  saveRecipe(e) {
+    e.preventDefault(); 
+    const {recipe} = this.state; 
+    recipe.ingredients = recipe.ingredients.split(','); 
+    recipe._id = _.uniqueId(); 
+    console.log('Object to be saved:'); 
+    console.log(recipe); 
+    const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
+    recipeList.push(recipe); 
+    localStorage.setItem("recipeList", JSON.stringify(recipeList)); 
+
+    console.log(JSON.parse(localStorage.getItem("recipeList")));
   }
   
   render() {
     return <RecipeForm 
+      recipe={this.state.recipe} 
       onChange={this.setRecipeState}
-      recipe={this.state.recipe}/>  
+      onSave={this.saveRecipe}
+      />  
   }
 }
+
