@@ -10,14 +10,18 @@ export default class IndexView extends Component {
   renderRecipeList() {
     const recipes = JSON.parse(localStorage.getItem("recipeList")); 
     return recipes.map((recipe) => {
-      return <h4 key={recipe._id}><Link to={"recipe/" + recipe._id}>{recipe.title}</Link></h4>
+      return <li key={recipe._id} className="list-group-item"><Link to={"recipe/" + recipe._id}>{recipe.title}</Link></li>
     }); 
   }; 
   render() {
     return (
-      <div>
-        {this.renderRecipeList()}
-      </div> 
+      <div> 
+        <h2>My Recipes</h2> 
+        <ul className="list-group">
+          {this.renderRecipeList()}
+        </ul> 
+        <Link to="/add"><button className="btn btn-primary">Add New Recipe</button></Link> 
+      </div>
       
     );
   }

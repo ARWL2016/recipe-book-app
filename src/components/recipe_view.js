@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import { Link } from 'react-router';
 
 export default class RecipeView extends Component {
   fetchSelectedRecipe() {
@@ -9,8 +10,8 @@ export default class RecipeView extends Component {
     return (
       <div>
         <h3>{selectedRecipe[0].title}</h3>
-        <ul> 
-          {selectedRecipe[0].ingredients.map(ingredient => <li>{ingredient}</li>)}
+        <ul className="list-group"> 
+          {selectedRecipe[0].ingredients.map(ingredient => <li key={ingredient} className="list-group-item">{ingredient}</li>)}
         </ul>
       </div> 
     )
@@ -19,6 +20,7 @@ export default class RecipeView extends Component {
   render() {
     return (
       <div>
+        <Link to='/'>Back to Recipe List</Link> 
         {this.fetchSelectedRecipe()}
       </div>
     )
