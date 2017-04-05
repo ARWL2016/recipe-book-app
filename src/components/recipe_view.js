@@ -18,7 +18,9 @@ export default class RecipeView extends Component {
       <div>
         <h3>{selectedRecipe[0].title}</h3>
         <ul className="list-group"> 
-          {selectedRecipe[0].ingredients.map(ingredient => <li key={ingredient} className="list-group-item">{ingredient}</li>)}
+         {selectedRecipe[0].ingredients.map((ingredient) => {
+           return <li key={ingredient} className="list-group-item">{ingredient}</li>; 
+         })}
         </ul>
       </div> 
     )
@@ -36,7 +38,7 @@ export default class RecipeView extends Component {
       <div>
         <Link to='/'>Back to Recipe List</Link> 
         {this.fetchSelectedRecipe()}
-        <Link to={'edit/' + this.props.params.id}><button className="btn btn-primary">Edit this Recipe</button></Link> 
+        <Link to={"/edit/" + this.props.params.id}><button className="btn btn-primary">Edit this Recipe</button></Link> 
         <button className="btn btn-danger" onClick={this.deleteRecipe}>Delete this Recipe</button>
       </div>
     )
@@ -44,3 +46,4 @@ export default class RecipeView extends Component {
      
 
 }
+

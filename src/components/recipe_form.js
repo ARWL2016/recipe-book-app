@@ -5,6 +5,7 @@ export default class RecipeForm extends Component {
   render() {
     return (
       <div> 
+      <Link to='/'>Back to Recipe List</Link>
         <h2>Recipe Form</h2> 
         <form> 
           <div className="form-group"> 
@@ -15,7 +16,7 @@ export default class RecipeForm extends Component {
               placeholder="enter a name for your recipe" 
               className="form-control"
               onChange={this.props.onChange} 
-              value={this.props.recipe.name}/> 
+              value={this.props.recipe.title}/> 
           </div> 
           <div className="form-group"> 
             <label htmlFor="ingredients">Ingredients</label> 

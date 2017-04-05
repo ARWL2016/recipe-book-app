@@ -8,7 +8,18 @@ export default class ManageRecipeForm extends Component {
   };
   constructor(props) {
     super(props); 
+
     this.state = { recipe: { title: '', ingredients: '', _id: '' } }; 
+
+    if (this.props.params.id) {
+      const recipes = JSON.parse(localStorage.getItem("recipeList"));  
+      const selection = (recipes.filter((recipe) => recipe._id === this.props.params.id))[0]; 
+      this.state = { recipe: { 
+        title: selection.title, 
+        ingredients: selection.ingredients.join(), 
+        _id: selection._id
+      }};
+    } 
 
     this.setRecipeState = this.setRecipeState.bind(this); 
     this.saveRecipe = this.saveRecipe.bind(this); 
@@ -22,13 +33,13 @@ export default class ManageRecipeForm extends Component {
     const {recipe} = this.state; 
     recipe.ingredients = recipe.ingredients.split(','); 
     recipe._id = _.uniqueId(); 
-    console.log('Object to be saved:'); 
-    console.log(recipe); 
-    const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
-    recipeList.push(recipe); 
-    localStorage.setItem("recipeList", JSON.stringify(recipeList)); 
 
-    console.log(JSON.parse(localStorage.getItem("recipeList")));
+    const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
+    const filteredList = recipeList.filter((data) => data.title !== recipe.title);
+
+    filteredList.push(recipe); 
+    localStorage.setItem("recipeList", JSON.stringify(filteredList)); 
+
     this.context.router.push('/'); 
   }
   
