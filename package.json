@@ -4,8 +4,12 @@
   "description": "Basic CRUD application using browser local storage",
   "main": "index.js",
   "repository": "https://github.com/ARWL2016/recipe-book-app",
+  "engines": {
+        "node": "6.9.2"
+    },
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node server.js", 
+    "start:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build:prod": "webpack"
   },
   "author": "Alistair Willis",
