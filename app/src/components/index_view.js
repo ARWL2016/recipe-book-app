@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 export default class IndexView extends Component {
   constructor (props) {
     super(props); 
-    console.log('constructor call'); 
       const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
       if (recipeList === null) {
         localStorage.setItem("recipeList", JSON.stringify(starterRecipes));
@@ -20,6 +19,9 @@ export default class IndexView extends Component {
   render() {
     return (
       <div> 
+        <Link to="/" className="navLink inactive">Home</Link>
+        <Link to="/add" className="navLink">New Recipe</Link>
+        
         <h2>Recipe Collection</h2> 
         <ul className="list-group">
           {this.renderRecipeList()}

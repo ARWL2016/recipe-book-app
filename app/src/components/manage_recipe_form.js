@@ -8,7 +8,6 @@ export default class ManageRecipeForm extends Component {
   };
   constructor(props) {
     super(props); 
-
     this.state = { 
       recipe: { 
         title: '', 
@@ -44,7 +43,9 @@ export default class ManageRecipeForm extends Component {
     e.preventDefault(); 
     const {recipe} = this.state; 
 
-    if (this.validateForm(recipe)) {
+    const valid = this.validateForm(recipe);
+    if (valid) {
+
       recipe.ingredients = recipe.ingredients.split(','); 
       recipe._id = _.uniqueId(); 
 
@@ -59,7 +60,9 @@ export default class ManageRecipeForm extends Component {
  
   }
   validateForm(recipe) {
-    this.setState({error: {title: true, ingredients: true}});
+    
+    this.state.error = {title: true, ingredients: true};
+    this.setState({error: this.state.error});
     if (recipe.title.length > 3) {  
       this.state.error.title = false;  
       this.setState({error: this.state.error});
@@ -68,8 +71,11 @@ export default class ManageRecipeForm extends Component {
       this.state.error.ingredients = false;  
       this.setState({error: this.state.error});
     }
-
-    console.log(this.state.error); 
+    if (this.state.error.title === false && this.state.error.ingredients === false) {
+      return true; 
+    } 
+    return false; 
+    
   }
   
   render() {
