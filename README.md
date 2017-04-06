@@ -18,6 +18,8 @@ https://www.freecodecamp.com/challenges/build-a-recipe-box
 - this will serve a bundle from memory at the publicPath `assets/bundle.js` - so reference this in index.html 
 
 #### Production Build 
+- Write some script for this!!! 
 - `npm run build:prod` - this will place a production bundle in `app/build`
 - adjust link in index.html 
-- `npm start` will run the app by serving static files from the app folder  
+- commit and push to git 
+- git push heroku master 
