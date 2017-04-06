@@ -5,8 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/ARWL2016/recipe-book-app",
   "scripts": {
-    "start": "node server.js", 
-    "start:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build:prod": "webpack"
   },
   "author": "Alistair Willis",

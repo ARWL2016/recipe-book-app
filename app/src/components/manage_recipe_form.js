@@ -9,7 +9,17 @@ export default class ManageRecipeForm extends Component {
   constructor(props) {
     super(props); 
 
-    this.state = { recipe: { title: '', ingredients: '', _id: '' } }; 
+    this.state = { 
+      recipe: { 
+        title: '', 
+        ingredients: '', 
+        _id: '' 
+      }, 
+      error: {
+        title: false, 
+        ingredients: false
+      }
+    }; 
 
     if (this.props.params.id) {
       const recipes = JSON.parse(localStorage.getItem("recipeList"));  
@@ -33,20 +43,38 @@ export default class ManageRecipeForm extends Component {
   saveRecipe(e) {
     e.preventDefault(); 
     const {recipe} = this.state; 
-    recipe.ingredients = recipe.ingredients.split(','); 
-    recipe._id = _.uniqueId(); 
 
-    const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
-    const filteredList = recipeList.filter((data) => data.title !== recipe.title);
+    if (this.validateForm(recipe)) {
+      recipe.ingredients = recipe.ingredients.split(','); 
+      recipe._id = _.uniqueId(); 
 
-    filteredList.push(recipe); 
-    localStorage.setItem("recipeList", JSON.stringify(filteredList)); 
+      const recipeList = JSON.parse(localStorage.getItem("recipeList")); 
+      const filteredList = recipeList.filter((data) => data.title !== recipe.title);
 
-    this.context.router.push('/'); 
+      filteredList.push(recipe); 
+      localStorage.setItem("recipeList", JSON.stringify(filteredList)); 
+
+      this.context.router.push('/');
+    }
+ 
+  }
+  validateForm(recipe) {
+    this.setState({error: {title: true, ingredients: true}});
+    if (recipe.title.length > 3) {  
+      this.state.error.title = false;  
+      this.setState({error: this.state.error});
+    } 
+    if (recipe.ingredients.length > 3) {  
+      this.state.error.ingredients = false;  
+      this.setState({error: this.state.error});
+    }
+
+    console.log(this.state.error); 
   }
   
   render() {
     return <RecipeForm 
+      error={this.state.error}
       recipe={this.state.recipe} 
       onChange={this.setRecipeState}
       onSave={this.saveRecipe}
