@@ -26,10 +26,11 @@ export default class RecipeView extends Component {
     )
   }
   deleteRecipe() {
+    console.log('delete');
     const recipes = JSON.parse(localStorage.getItem("recipeList"));  
     const recipeList = recipes.filter((recipe) => recipe._id !== this.props.params.id); 
     localStorage.setItem("recipeList", JSON.stringify(recipeList)); 
-
+    
     this.context.router.push('/'); 
   }
 
@@ -39,7 +40,7 @@ export default class RecipeView extends Component {
         <Link to='/'>Back to Recipe List</Link> 
         {this.fetchSelectedRecipe()}
         <Link to={"/edit/" + this.props.params.id}><button className="btn btn-primary">Edit this Recipe</button></Link> 
-        <button className="btn btn-danger" onClick={this.deleteRecipe}>Delete this Recipe</button>
+        <button onClick={this.deleteRecipe} className="btn btn-danger" >Delete this Recipe</button>
       </div>
     )
   }

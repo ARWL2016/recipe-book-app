@@ -5,7 +5,9 @@
   "main": "index.js",
   "repository": "https://github.com/ARWL2016/recipe-book-app",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "node server.js", 
+    "start:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build:prod": "webpack"
   },
   "author": "Alistair Willis",
   "license": "ISC",
@@ -19,6 +21,7 @@
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
+    "express": "^4.15.2",
     "lodash": "^3.10.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

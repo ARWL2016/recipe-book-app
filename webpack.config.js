@@ -1,10 +1,12 @@
+var path = require('path'); 
+
 module.exports = {
   entry: [
-    './src/index.js'
+    './app/src/index.js'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: path.resolve(__dirname, 'app/build'),
+    publicPath: '/assets/',
     filename: 'bundle.js'
   },
   module: {
@@ -21,7 +23,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: path.resolve(__dirname, 'app/')
   }, 
-  devtool: "source-map"
+  devtool: "inline-source-map"
 };
