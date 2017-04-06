@@ -1,8 +1,7 @@
 .container {
-
-  max-width: 800px; 
+  max-width: 1000px; 
   margin: 0 auto; 
-  margin-top: 20px; 
+
 }
 
 button {
@@ -13,4 +12,13 @@ button {
 h2, 
 h3 {
   margin-top: 10px; 
+}
+
+.myNavList {
+  list-style: none; 
+}
+
+.myNavList li {
+   display: inline-block; 
+   padding: 10px; 
 }

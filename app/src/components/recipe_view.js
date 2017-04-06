@@ -36,8 +36,7 @@ export default class RecipeView extends Component {
 
   render() {
     return (
-      <div>
-        <Link to='/'>Back to Recipe List</Link> 
+      <div> 
         {this.fetchSelectedRecipe()}
         <Link to={"/edit/" + this.props.params.id}><button className="btn btn-primary">Edit this Recipe</button></Link> 
         <button onClick={this.deleteRecipe} className="btn btn-danger" >Delete this Recipe</button>

@@ -20,7 +20,7 @@ export default class IndexView extends Component {
   render() {
     return (
       <div> 
-        <h2>Recipe Collection!</h2> 
+        <h2>Recipe Collection</h2> 
         <ul className="list-group">
           {this.renderRecipeList()}
         </ul> 
